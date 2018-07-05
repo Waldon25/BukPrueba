@@ -1,0 +1,31 @@
+1. La indemnización por años de servicio es un beneficio que corresponde aproximadamente a 1 sueldo por año de servicio en la empresa. La fórmula exacta es la siguiente:
+- Si se ha trabajado menos de un año, no hay beneficio
+- Si se ha trabajado más de un año, se suma 1 sueldo por cada año o fracción superior a 6 meses trabajados.
+Programa una función que retorne el monto a pagar por indemnización, tomando como input el sueldo de la persona y el número de meses trabajados.
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculo de Indemnizacion</title>
+</head>
+<body>
+	<form method="POST" action="#">	
+		<input type="text" name="sueldo" placeholder="ingrese el sueldo">
+		<input type="text" name="meses" placeholder="ingrese en meses la cantidad de tiempo trabajado"> 
+		<input type="submit" name="calcular" value="calcular">
+	</form>
+		<?php if(!is_null(($_POST['sueldo'])&&($_POST['meses']))){ 
+			if($_POST['meses']>12){
+				$meses = $_POST['meses']; 
+				$tiempo =  round($meses/12);
+				$sueldo = $_POST['sueldo'];
+				$indemnización = $sueldo*$tiempo;
+				$message = "Indemnización Corresponde a";
+			}else{
+				$message = "No Corresponde Beneficio";
+			}
+
+		echo $message." ".$indemnización;
+	} ?>
+</body>
+</html>
