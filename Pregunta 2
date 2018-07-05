@@ -1,0 +1,40 @@
+2. El beneficio del feriado progresivo consiste en días adicionales de vacaciones, que se obtienen por años de antigüedad. Para poder optar al beneficio se deben acreditar 10 años de trabajo, (que pueden haber sido con otros empleadores). Acreditada esta condición, el trabajador obtiene 1 día adicional de vacaciones anual por cada 3 años de trabajo cumplidos en el empleador actual. Por ejemplo, una persona que ha trabajado toda su vida con el mismo empleador, tendría su primer día progresivo una vez que cumpla 13 años de trabajo.
+Programa una función que tome los siguientes parámetros:
+- Años de antigüedad en empleadores anteriores
+- Fecha de ingreso al empleador actual
+- Fecha en la cual se realiza el cálculo
+Y que retorne el número de días de vacaciones progresivas que le corresponden al trabajador.
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculo de Indemnizacion</title>
+</head>
+<body>
+<form method="POST" action="#">	
+		<input type="text" name="tiempo" placeholder="Ingrese años de antiguedad">
+		<input type="date" name="ingreso" placeholder="ingrese fecha de ingreso empleador actual"> 
+		<input type="date" name="calculo" placeholder="ingrese fecha de calculo"> 
+		<input type="submit" name="calcular" value="calcular">
+	</form>
+		
+		<?php if(!is_null(($_POST['tiempo'])&&($_POST['ingreso'])&&($_POST['calculo']))){ 
+			if($_POST['tiempo']>=10){
+				$fechaingreso = new DateTime($_POST['ingreso']);
+				$fechacalculo = new DateTime($_POST['calculo']);
+				$diffechas = date_diff($fechaingreso,$fechacalculo);
+				$a = $diffechas->format("%y");
+				if($a >= 3){
+					$dias = round($a/3);
+				}else{
+					$dias = 0;
+				}
+
+				$message = "Vacaciones Proporcionales corresponden a";
+			}else{
+				$message = "No Corresponden Vacaciones Proporcionales";
+			}
+			echo $message." ".$dias." dias";
+	} ?>
+</body>
+</html>
